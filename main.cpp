@@ -16,6 +16,18 @@ class Complex
             a = arg1;
             b = arg2;
         }
+        double get_a() const{
+            return a;
+        }
+        double get_b() const{
+            return b;
+        }
+        void set_a(double input){
+            a = input;
+        }
+        void set_b(double input){
+            b = input;
+        }
         double mod() const{
             return sqrt(a*a + b*b);
         }
