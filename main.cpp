@@ -5,100 +5,92 @@ using namespace std;
 
 class Complex
 {
-    public:
+    private:
         double a, b;
-        Complex()
-        {
+    public:
+        Complex(){
             a = 0;
             b = 0;
         }
-        Complex(double arg1, double arg2)
-        {
+        Complex(double arg1, double arg2){
             a = arg1;
             b = arg2;
         }
-        double mod()
-        {
+        double mod() const{
             return sqrt(a*a + b*b);
         }
-        void Print()
-        {
+        void Print() const{
             cout << a;
             if (b >= 0)
                 cout << "+";
             cout << b << "*i" << endl;
         }
-        ~Complex() //деструктор
-        {
+        friend Complex operator +(Complex &first, Complex &second);
+        friend Complex operator -(Complex &first, Complex &second);
+        friend Complex operator *(Complex &first, Complex &second);
+        friend Complex operator /(Complex &first, Complex &second);
+        friend Complex coni(Complex &comp);
+        friend bool operator ==(Complex &first, Complex &second);
 
-        }
+        ~Complex() //деструктор
+        = default;
 };
 
-Complex operator +(Complex &first, Complex &second)
-{
+Complex operator +(Complex &first, Complex &second){
     Complex res = Complex(first.a + second.a, first.b + second.b);
     return res;
 }
 
-Complex operator -(Complex &first, Complex &second)
-{
+Complex operator -(Complex &first, Complex &second){
     Complex res = Complex(first.a - second.a, first.b - second.b);
     return res;
 }
 
-Complex operator *(Complex &first, Complex &second)
-{
+Complex operator *(Complex &first, Complex &second){
     Complex res = Complex(first.a * second.a - first.b*second.b, first.a*second.b + first.b*second.a);
     return res;
 }
 
-Complex operator /(Complex &first, Complex &second)
-{
+Complex operator /(Complex &first, Complex &second){
     Complex res = Complex((first.a * second.a + first.b*second.b)/(second.mod()*second.mod()), 
                             (first.b*second.a-first.a*second.b)/(second.mod()*second.mod()));
     return res;
 }
 
-Complex coni(Complex &comp)
-{
+Complex coni(Complex &comp){
     Complex res = Complex(comp.a, -comp.b);
     return res;
 }
 
-bool operator < (Complex &first, Complex &second)
-{
+bool operator < (Complex &first, Complex &second){
     if (first.mod() < second.mod())
         return true;
     else
         return false;
 }
 
-bool operator > (Complex &first, Complex &second)
-{
+bool operator > (Complex &first, Complex &second){
     if (first.mod() > second.mod())
         return true;
     else
         return false;
 }
 
-bool operator >= (Complex &first, Complex &second)
-{
+bool operator >= (Complex &first, Complex &second){
     if (first.mod() >= second.mod())
         return true;
     else
         return false;
 }
 
-bool operator <= (Complex &first, Complex &second)
-{
+bool operator <= (Complex &first, Complex &second){
     if (first.mod() <= second.mod())
         return true;
     else
         return false;
 }
 
-bool operator ==(Complex &first, Complex &second)
-{
+bool operator ==(Complex &first, Complex &second){
     if(first.a == second.a && first.b == second.b)
         return true;
     else
@@ -112,11 +104,19 @@ int main(int argc, char *argv[])
     if (argc == 1)
     {
         cin >> a1 >> b1 >> a2 >> b2;
+        if(cin.fail()){
+            cout << "ERROR!" << endl;
+            return 0;
+        }
     }
     else
     {
         ifstream file (argv[1]);
         file >> a1 >> b1 >> a2 >> b2;
+        if(file.fail()){
+            cout << "ERROR!" << endl;
+            return 0;
+        }
         file.close();
     }
     Complex a = Complex (a1, b1);
@@ -124,15 +124,21 @@ int main(int argc, char *argv[])
     Complex res = Complex();
 
     res = a+b;
+    cout << "a + b = ";
     res.Print();
     res = a-b;
+    cout << "a - b = ";
     res.Print();
     res = a*b;
+    cout << "a * b = ";
     res.Print();
     res = a/b;
+    cout << "a / b = ";
     res.Print();
     res = coni(a);
+    cout << "Обратное от a: ";
     res.Print();
-    cout << (int)(a<b) << ' ' << (int)(a>b) << (int)(a==b) << endl;
+    cout << "a < b?: " << (int)(a<b) << endl << "a > b ?: " << (int)(a>b) << endl << "a == b ?: " <<  (int)(a==b)
+                                                                                                        << endl;
     return 0;
 }
