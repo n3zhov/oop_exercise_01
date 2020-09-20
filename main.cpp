@@ -33,7 +33,7 @@ class Complex
         }
         void Print() const{
             cout << a;
-            if (b >= 0)
+            if (b > 0)
                 cout << "+";
             cout << b << "*i" << endl;
         }
