@@ -136,7 +136,10 @@ int main(int argc, char *argv[])
     cout << "a / b = ";
     res.Print();
     res = coni(a);
-    cout << "Обратное от a: ";
+    cout << "Сопряжённое с a: ";
+    res.Print();
+    res = coni(b);
+    cout << "Сопряжённое с b: ";
     res.Print();
     cout << "a < b?: " << (int)(a<b) << endl << "a > b ?: " << (int)(a>b) << endl << "a == b ?: " <<  (int)(a==b)
                                                                                                         << endl;
