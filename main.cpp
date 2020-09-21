@@ -37,6 +37,10 @@ class Complex
                 cout << "+";
             cout << b << "*i" << endl;
         }
+        Complex coni(){
+            Complex res = Complex(a, -b);
+            return res;
+        }
         friend Complex operator +(Complex &first, Complex &second);
         friend Complex operator -(Complex &first, Complex &second);
         friend Complex operator *(Complex &first, Complex &second);
@@ -66,11 +70,6 @@ Complex operator *(Complex &first, Complex &second){
 Complex operator /(Complex &first, Complex &second){
     Complex res = Complex((first.a * second.a + first.b*second.b)/(second.mod()*second.mod()), 
                             (first.b*second.a-first.a*second.b)/(second.mod()*second.mod()));
-    return res;
-}
-
-Complex coni(Complex &comp){
-    Complex res = Complex(comp.a, -comp.b);
     return res;
 }
 
@@ -147,10 +146,10 @@ int main(int argc, char *argv[])
     res = a/b;
     cout << "a / b = ";
     res.Print();
-    res = coni(a);
+    res = a.coni();
     cout << "Сопряжённое с a: ";
     res.Print();
-    res = coni(b);
+    res = b.coni();
     cout << "Сопряжённое с b: ";
     res.Print();
     cout << "a < b?: " << (int)(a<b) << endl << "a > b ?: " << (int)(a>b) << endl << "a == b ?: " <<  (int)(a==b)
