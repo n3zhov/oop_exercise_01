@@ -12,10 +12,11 @@ using namespace std;
 class Complex
 {
     private:
+    //Коэфициенты комплексного числа
         double a, b;
     public:
+        //Стандартный конструктор
         Complex(){
-            //Коэфициенты комплексного числа
             a = 0;
             b = 0;
         }
