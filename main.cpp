@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
         cin >> a1 >> b1 >> a2 >> b2;
         if(cin.fail()){
             cout << "ERROR!" << endl;
-            return 0;
+            return 1;
         }
     }
     else
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
         file >> a1 >> b1 >> a2 >> b2;
         if(file.fail()){
             cout << "ERROR!" << endl;
-            return 0;
+            return 1;
         }
         file.close();
     }
