@@ -1,3 +1,8 @@
+/*Ежов 204
+ *Комплексные числа
+ * Сложение, вычитание, умножение, деление
+ * нахождение сопряжённого, сравнение комплексных чисел
+ * */
 #include <iostream>
 #include <fstream>
 #include <cmath>
@@ -10,13 +15,16 @@ class Complex
         double a, b;
     public:
         Complex(){
+            //Коэфициенты комплексного числа
             a = 0;
             b = 0;
         }
+        //Конструктор
         Complex(double arg1, double arg2){
             a = arg1;
             b = arg2;
         }
+        //Геттеры и сеттеры для private переменных
         double get_a() const{
             return a;
         }
@@ -29,19 +37,23 @@ class Complex
         void set_b(double input){
             b = input;
         }
+        //Нахождение модуля комплексного числа
         double Mod() const{
             return sqrt(a*a + b*b);
         }
+        //Печать комплексного числа в консоль
         void Print() const{
             cout << a;
             if (b > 0)
                 cout << "+";
             cout << b << "*i" << endl;
         }
+        //Функция нахлждения сопряжённого
         Complex Coni(){
             Complex res = Complex(a, -b);
             return res;
         }
+        //Прототипы операторов
         friend Complex operator +(Complex &first, Complex &second);
         friend Complex operator -(Complex &first, Complex &second);
         friend Complex operator *(Complex &first, Complex &second);
@@ -112,26 +124,33 @@ bool operator ==(Complex &first, Complex &second){
 int main(int argc, char *argv[])
 {
     double a1, b1, a2, b2;
+    //Если передали аргументом имя файла, то читаем комплексные числа из него
     if (argc == 1)
     {
         cin >> a1 >> b1 >> a2 >> b2;
         if(cin.fail()){
+            //Если не число, то выдаём ошибку
             cout << "ERROR!" << endl;
             return 1;
         }
     }
+    //В ином случае читаем с консоли
     else
     {
         ifstream file (argv[1]);
         file >> a1 >> b1 >> a2 >> b2;
         if(file.fail()){
+            //Если не число, то выдаём ошибку
             cout << "ERROR!" << endl;
             return 1;
         }
         file.close();
     }
+    //Первое комплексное число
     Complex a = Complex (a1, b1);
+    //Второе комплексное число
     Complex b = Complex(a2, b2);
+    //Комплексное число для хранения результатов арифмитических операций
     Complex res = Complex();
 
     res = a+b;
