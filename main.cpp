@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <math.h>
+#include <cmath>
+
 using namespace std;
 
 class Complex
@@ -28,7 +29,7 @@ class Complex
         void set_b(double input){
             b = input;
         }
-        double mod() const{
+        double Mod() const{
             return sqrt(a*a + b*b);
         }
         void Print() const{
@@ -37,7 +38,7 @@ class Complex
                 cout << "+";
             cout << b << "*i" << endl;
         }
-        Complex coni(){
+        Complex Coni(){
             Complex res = Complex(a, -b);
             return res;
         }
@@ -67,34 +68,34 @@ Complex operator *(Complex &first, Complex &second){
 }
 
 Complex operator /(Complex &first, Complex &second){
-    Complex res = Complex((first.a * second.a + first.b*second.b)/(second.mod()*second.mod()), 
-                            (first.b*second.a-first.a*second.b)/(second.mod()*second.mod()));
+    Complex res = Complex((first.a * second.a + first.b*second.b)/(second.Mod()*second.Mod()), 
+                            (first.b*second.a-first.a*second.b)/(second.Mod()*second.Mod()));
     return res;
 }
 
 bool operator < (Complex &first, Complex &second){
-    if (first.mod() < second.mod())
+    if (first.Mod() < second.Mod())
         return true;
     else
         return false;
 }
 
 bool operator > (Complex &first, Complex &second){
-    if (first.mod() > second.mod())
+    if (first.Mod() > second.Mod())
         return true;
     else
         return false;
 }
 
 bool operator >= (Complex &first, Complex &second){
-    if (first.mod() >= second.mod())
+    if (first.Mod() >= second.Mod())
         return true;
     else
         return false;
 }
 
 bool operator <= (Complex &first, Complex &second){
-    if (first.mod() <= second.mod())
+    if (first.Mod() <= second.Mod())
         return true;
     else
         return false;
@@ -145,10 +146,10 @@ int main(int argc, char *argv[])
     res = a/b;
     cout << "a / b = ";
     res.Print();
-    res = a.coni();
+    res = a.Coni();
     cout << "Сопряжённое с a: ";
     res.Print();
-    res = b.coni();
+    res = b.Coni();
     cout << "Сопряжённое с b: ";
     res.Print();
     cout << "a < b?: " << (int)(a<b) << endl << "a > b ?: " << (int)(a>b) << endl << "a == b ?: " <<  (int)(a==b)
