@@ -45,7 +45,6 @@ class Complex
         friend Complex operator -(Complex &first, Complex &second);
         friend Complex operator *(Complex &first, Complex &second);
         friend Complex operator /(Complex &first, Complex &second);
-        friend Complex coni(Complex &comp);
         friend bool operator ==(Complex &first, Complex &second);
 
         ~Complex() //деструктор
